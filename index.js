@@ -33,9 +33,6 @@ songs.push([
   { title: "Space junk", artist: "More giraffes", genre: "pop" },
 ]);
 
-//needs to be removed!
-console.log(songs[14]);
-
 // Object containing each Guardian's preferred genre
 const guardians = {
   "Star-Lord": "Rock",
@@ -47,7 +44,6 @@ const guardians = {
 
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
-  // Use the map() function to create playlists for each Guardian
   return Object.entries(guardians).map(([name, genre]) => {
     const playlist = songs.filter((song) => song.genre === genre);
     return { name, playlist };
@@ -71,4 +67,3 @@ const displayPlaylist = function (guardian) {
   return playlistElement;
 };
 document.body.innerHTML = playlist.outerHTML;
-
