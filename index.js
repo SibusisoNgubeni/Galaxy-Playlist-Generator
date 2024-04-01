@@ -26,16 +26,16 @@ const songs = [
 
 //Added 5 songs using the push method
 songs.push([
-  { title: "Holy grail", artist: "Jay-z", genre: "Hip-hop" },
+  { title: "Roses", artist: "chain smokers", genre: "Pop" },
   { title: "Believer", artist: "Imagine dragons", genre: "Rock" },
   { title: "Hero", artist: "Extreme music", genre: "Rock" },
   { title: "Let it roll", artist: "Extreme music", genre: "Rock" },
-  { title: "Space junk", artist: "More giraffes", genre: "pop" },
+  { title: "Space junk", artist: "More giraffes", genre: "Pop" },
 ]);
 
 // Object containing each Guardian's preferred genre
 const guardians = {
-  "Star-Lord": "Rock",
+  StarLord: "Rock",
   Gamora: "Pop",
   Drax: "R&B",
   Rocket: "Rock",
@@ -54,16 +54,28 @@ const playlists = generatePlaylist(guardians, songs);
 
 generatePlaylist(guardians, songs);
 
+// Display playlist function
 const displayPlaylist = function (guardian) {
   const playlistElement = document.createElement("ul");
   const currentGuardianName = guardian.name;
-  const currentIndex = 0;
-  for (let i = 0; i < guardian.songs.length; i++) {
-    playlistElement.appendChild(document.createElement("li"));
-    playlistElement.innerHTML += `${currentGuardianName}'s song ${i + 1}: ${
-      guardian.songs[i]
-    }`;
+  for (let i = 0; i < guardian.playlist.length; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${currentGuardianName}'s song ${i + 1}: ${
+      guardian.playlist[i].title
+    } by ${guardian.playlist[i].artist}`;
+    playlistElement.appendChild(listItem);
   }
   return playlistElement;
 };
-document.body.innerHTML = playlist.outerHTML;
+
+// Display playlists on the webpage
+playlists.forEach((guardian) => {
+  const playlistContainer = document.createElement("div");
+  playlistContainer.appendChild(displayPlaylist(guardian));
+  document.body.appendChild(playlistContainer);
+});
+
+const linkElement = document.createElement("link");
+linkElement.rel = "stylesheet";
+linkElement.href = "index.css"; // Replace 'styles.css' with the path to your CSS file
+document.head.appendChild(linkElement);
